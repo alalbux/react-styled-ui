@@ -5,56 +5,50 @@ import styled, { css } from 'styled-components'
  * The only true Button component.
  */
 const Button = styled.button`
-  text-align: center;   
-  line-height: 1.15;
-  height: 38px;
+  text-align: center;
   cursor: pointer;
-  outline: none;
-
-  border: none;
-  box-shadow: 1px 2px 7px 5px rgba(0, 0, 0, 0.08);
-  background-color: #FF00FF;
+  background-color: #007bff;
+  border-radius: 10px;
   color: #FFFFFF;
+  border-color: #f8f9fa;
+  padding: 8px 16px;
+
+  ${props => props.fontSize && `
+    font-size: ${props.fontSize};
+  `}
+
   &:hover {
-    background-color: #FFF0FF;
-  }
-  &:active {
-    background-color: #FF000F;
+    background-color: #0069d9;
+    border-color: #0062cc;
   }
 
   ${props => (props.light || props.dark) && css`
-    background: none;
-    box-shadow: none;
-    border: solid 1px;
-    &:active {
-      background: none;
-      border-color: #FFFFFF;
-      color: #FFFFFF;
-    }
+    background: #343a40;
+    border: solid 1px #343a40;
+    color: #FFFFFF;
+
     &:hover {
-      background: none;
+      background: #23272b;
+      border-color: #1d2124;
     }
   `}
 
   ${props => props.light && css`
-    color: #000000;
-    border-color: #000000;
+    background: #f8f9fa;
+    border-color:  #f8f9fa;
+    color: #212529;
     &:hover {
-      border-color: #FFFFFF;
-      color: #FFFFFF;
+      background-color: #e2e6ea;
+      border-color: #dae0e5;
     }
   `}
 
   ${props => props.dark && css`
     color: #FFFFFF;
-    border-color: #FFFFFF;
+    border-color: #343a40;
     &:hover {
-      border-color: #FF0000;
-      color: #FF0000;
-    }
-    &:active {
-      border-color: #00FF00;
-      color: #00FF00;
+      border-color: #1d2124;
+      color: #FFFFFF;
     }
   `}
 
@@ -62,6 +56,7 @@ const Button = styled.button`
     cursor: default;
     background-color: #d1cdd2;
     box-shadow: none;
+    border: none;
     &:hover { background-color: #d1cdd2 }
     &:active { background-color: #d1cdd2 }
   `}
@@ -82,12 +77,15 @@ Button.propTypes = {
   light: PropTypes.bool,
   /** Button text color. */
   color: PropTypes.string,
+  /** Button text color. */
+  fontSize: PropTypes.string,
   /** Button type. */
   type: PropTypes.string
 }
 
 Button.defaultProps = {
-  type: 'button'
+  type: 'button',
+  fontSize: '16px'
 }
 
 Button.displayName = 'Button'
